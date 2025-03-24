@@ -1,7 +1,22 @@
 const songs = [
-  { title: "Dil Mudia Na", artist: "Jazzy B", image: "image.png", audio: "songs/Dil Mudia Na 320 Kbps.mp3" },
-  { title: "Husn Walo Se", artist: "Nusrat Fateh Ali Khan", image: "image1.png", audio: "songs/Husn Walo Se 320 Kbps.mp3" },
-  { title: "Teri Yaadon Se", artist: "Mustafa Zahid", image: "image2.png", audio: "songs/Teri Yaadon Se 128 Kbps.mp3" }
+  { 
+    title: "Dil Mudia Na", 
+    artist: "Jazzy B", 
+    image: "image.png", 
+    audio: "Díl Mudia Na 320 Kbps.mp3"  // Removed songs/ directory
+  },
+  { 
+    title: "Husn Walo Se", 
+    artist: "Nusrat Fateh Ali Khan", 
+    image: "image1.png", 
+    audio: "Husn Walo Se 320 Kbps.mp3"  // Removed songs/ directory
+  },
+  { 
+    title: "Teri Yaadon Se", 
+    artist: "Mustafa Zahid", 
+    image: "image2.png", 
+    audio: "Teri Yaadon Se 128 Kbps.mp3"  // Removed songs/ directory
+  }
 ];
 
 let currentSongIndex = 0;
