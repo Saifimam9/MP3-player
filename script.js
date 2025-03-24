@@ -44,12 +44,17 @@ function loadSongs() {
     songList.appendChild(songDiv);
   });
 }
-
 function playSong(index) {
   currentSongIndex = index;
   audio.src = songs[index].audio;
-  audio.play();
-  playPauseBtn.textContent = "⏸️";
+  audio.play()
+    .then(() => {
+      playPauseBtn.textContent = "⏸️";
+    })
+    .catch(error => {
+      console.error("Error playing song:", error);
+      alert(`Error loading song: ${songs[index].title}. Please check console.`);
+    });
 }
 
 function togglePlayPause() {
