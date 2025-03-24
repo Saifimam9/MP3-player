@@ -3,8 +3,10 @@ const songs = [
     title: "Dil Mudia Na", 
     artist: "Jazzy B", 
     image: "image.png", 
-    audio: "Díl Mudia Na 320 Kbps.mp3"  // Removed songs/ directory
+    audio: "Dil-Mudia-Na.mp3"  // Simplified filename
   },
+  // ... rest of your songs array
+
   { 
     title: "Husn Walo Se", 
     artist: "Nusrat Fateh Ali Khan", 
