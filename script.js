@@ -3,7 +3,8 @@ const songs = [
     title: "Dil Mudia Na", 
     artist: "Jazzy B", 
     image: "image.png", 
-    audio: "Dil-Mudia-Na.mp3"  // Simplified filename
+    // Double-check capitalization in your code matches exactly:
+audio: "Dil-Mudia-Na.mp3"  // Must match GitHub filename exactly
   },
   // ... rest of your songs array
 
