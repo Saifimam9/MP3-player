@@ -48,18 +48,27 @@ function loadSongs() {
   });
 }
 function playSong(index) {
+  console.log("Attempting to load:", songs[index].audio); // Debug line
+  
   currentSongIndex = index;
   audio.src = songs[index].audio;
+  
+  // Add error event listener
+  audio.onerror = function() {
+    console.error("Audio Error:", audio.error);
+    console.log("Network loading state:", audio.readyState);
+  };
+  
   audio.play()
     .then(() => {
       playPauseBtn.textContent = "⏸️";
     })
     .catch(error => {
-      console.error("Error playing song:", error);
-      alert(`Error loading song: ${songs[index].title}. Please check console.`);
+      console.error("Detailed play error:", error);
+      console.log("Audio source attempted:", audio.src);
+      alert(`Error loading song: ${songs[index].title}. Check console for details.`);
     });
 }
-
 function togglePlayPause() {
   if (audio.paused) {
     audio.play();
