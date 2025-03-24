@@ -1,0 +1,114 @@
+body {
+  background: url('city.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: cursive;
+  color: black;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-container {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+  max-width: 400px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.song-list .song {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.song img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.song:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.song-title {
+  font-weight: bold;
+}
+
+.song-artist {
+  color: #555;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 15px;
+  margin: 0 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background-color: #007bff;
+  transition: width 0.3s;
+}
+
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Fade in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
