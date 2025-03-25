@@ -1,98 +1,87 @@
-const songs = [
-  { title: "Dil Mudia Na", artist: "Jazzy B", audio: "song1.mp3" },
-  { title: "Husn Walo Se", artist: "Nusrat Fateh Ali Khan", audio: "song2.mp3" },
-  { title: "Teri Yaadon Se", artist: "Mustafa Zahid", audio: "song3.mp3" }
-];
-
-
-
-let currentSongIndex = 0;
+// Select elements
 const audio = document.getElementById('audio');
-const playPauseBtn = document.getElementById('playPauseBtn');
+const playBtn = document.getElementById('play');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const songTitle = document.getElementById('song-title');
+const artistName = document.getElementById('artist-name');
+const progressContainer = document.getElementById('progress-container');
 const progress = document.getElementById('progress');
-const currentTimeEl = document.getElementById('currentTime');
+const currentTimeEl = document.getElementById('current-time');
 const durationEl = document.getElementById('duration');
 
-function loadSongs() {
-  const songList = document.getElementById('songList');
-  songList.innerHTML = '';
+let songIndex = 0;
 
-  songs.forEach((song, index) => {
-    const songDiv = document.createElement('div');
-    songDiv.classList.add('song');
-    songDiv.innerHTML = `
-      <img src="${song.image}" alt="${song.title}">
-      <div class='song-info'>
-        <div class='song-title'>${song.title}</div>
-        <div class='song-artist'>${song.artist}</div>
-      </div>
-    `;
-    songDiv.onclick = () => playSong(index);
-    songList.appendChild(songDiv);
-  });
+// Load song
+function loadSong(song) {
+  songTitle.textContent = song.title;
+  artistName.textContent = song.artist;
+  audio.src = song.audio;
 }
 
-function playSong(index) {
-  console.log("Attempting to load:", songs[index].audio);
-
-  currentSongIndex = index;
-  audio.src = `${songs[index].audio}?v=${new Date().getTime()}`; // Cache Bypass
-
-  // Enhanced Error Logging
-  audio.onerror = function() {
-    console.error(`Audio error for ${songs[currentSongIndex].audio}`, audio.error);
-    alert(`Failed to load the audio file: ${songs[currentSongIndex].audio}`);
-  };
-
-  audio.play()
-    .then(() => {
-      playPauseBtn.textContent = "⏸️";
-    })
-    .catch(error => {
-      console.error("Detailed play error:", error);
-      console.log("Audio source attempted:", audio.src);
-      alert(`Error loading song: ${songs[index].title}. Check console for details.`);
-    });
+// Play Song
+function playSong() {
+  audio.play();
+  playBtn.innerHTML = '❚❚';
 }
 
-function togglePlayPause() {
-  if (audio.paused) {
-    audio.play();
-    playPauseBtn.textContent = "⏸️";
-  } else {
-    audio.pause();
-    playPauseBtn.textContent = "▶️";
-  }
+// Pause Song
+function pauseSong() {
+  audio.pause();
+  playBtn.innerHTML = '▶';
 }
 
+// Toggle Play/Pause
+function togglePlay() {
+  const isPlaying = !audio.paused;
+  isPlaying ? pauseSong() : playSong();
+}
+
+// Previous Song
 function prevSong() {
-  currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-  playSong(currentSongIndex);
+  songIndex = (songIndex - 1 + songs.length) % songs.length;
+  loadSong(songs[songIndex]);
+  playSong();
 }
 
+// Next Song
 function nextSong() {
-  currentSongIndex = (currentSongIndex + 1) % songs.length;
-  playSong(currentSongIndex);
+  songIndex = (songIndex + 1) % songs.length;
+  loadSong(songs[songIndex]);
+  playSong();
 }
 
-audio.addEventListener('timeupdate', () => {
-  if (!audio.duration) return;
-
-  const progressPercent = (audio.currentTime / audio.duration) * 100;
+// Update Progress Bar
+function updateProgress(e) {
+  const { duration, currentTime } = e.srcElement;
+  const progressPercent = (currentTime / duration) * 100;
   progress.style.width = `${progressPercent}%`;
-  currentTimeEl.textContent = formatTime(audio.currentTime);
-  durationEl.textContent = formatTime(audio.duration);
-});
+  currentTimeEl.textContent = formatTime(currentTime);
+  durationEl.textContent = duration ? formatTime(duration) : '0:00';
+}
 
+// Set Progress Bar
+function setProgress(e) {
+  const width = progressContainer.clientWidth;
+  const clickX = e.offsetX;
+  const duration = audio.duration;
+  audio.currentTime = (clickX / width) * duration;
+}
+
+// Format Time
 function formatTime(time) {
-  if (isNaN(time)) return "0:00";
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60);
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
-playPauseBtn.onclick = togglePlayPause;
-document.getElementById('prevBtn').onclick = prevSong;
-document.getElementById('nextBtn').onclick = nextSong;
+// Event Listeners
+playBtn.addEventListener('click', togglePlay);
+prevBtn.addEventListener('click', prevSong);
+nextBtn.addEventListener('click', nextSong);
+audio.addEventListener('timeupdate', updateProgress);
+progressContainer.addEventListener('click', setProgress);
+audio.addEventListener('ended', nextSong);
 
-loadSongs();
+// Initial Load
+loadSong(songs[songIndex]);
