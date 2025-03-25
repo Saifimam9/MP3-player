@@ -3,22 +3,19 @@ const songs = [
     title: "Dil Mudia Na", 
     artist: "Jazzy B", 
     image: "image.png", 
-    // Double-check capitalization in your code matches exactly:
-audio: "Dil-Mudia-Na.mp3"  // Must match GitHub filename exactly
+    audio: "Dil-Mudia-Na.mp3"
   },
-  // ... rest of your songs array
-
   { 
     title: "Husn Walo Se", 
     artist: "Nusrat Fateh Ali Khan", 
     image: "image1.png", 
-    audio: "Husn Walo Se 320 Kbps.mp3"  // Removed songs/ directory
+    audio: "Husn-Walo-Se-320-Kbps.mp3"
   },
   { 
     title: "Teri Yaadon Se", 
     artist: "Mustafa Zahid", 
     image: "image2.png", 
-    audio: "Teri Yaadon Se 128 Kbps.mp3"  // Removed songs/ directory
+    audio: "Teri-Yaadon-Se-128-Kbps.mp3"
   }
 ];
 
@@ -47,18 +44,21 @@ function loadSongs() {
     songList.appendChild(songDiv);
   });
 }
+
 function playSong(index) {
-  console.log("Attempting to load:", songs[index].audio); // Debug line
-  
+  console.log("Attempting to load:", songs[index].audio);
+
   currentSongIndex = index;
-  audio.src = songs[index].audio;
-  
-  // Add error event listener
-  audio.onerror = function() {
+  audio.src = `${songs[index].audio}?v=${new Date().getTime()}`; // Cache Bypass
+
+  // Enhanced Error Logging
+  audio.onerror = function () {
     console.error("Audio Error:", audio.error);
-    console.log("Network loading state:", audio.readyState);
+    console.log("Network State:", audio.networkState);
+    console.log("Ready State:", audio.readyState);
+    alert(`Failed to load the audio file: ${songs[index].audio}`);
   };
-  
+
   audio.play()
     .then(() => {
       playPauseBtn.textContent = "⏸️";
@@ -69,6 +69,7 @@ function playSong(index) {
       alert(`Error loading song: ${songs[index].title}. Check console for details.`);
     });
 }
+
 function togglePlayPause() {
   if (audio.paused) {
     audio.play();
@@ -90,6 +91,8 @@ function nextSong() {
 }
 
 audio.addEventListener('timeupdate', () => {
+  if (!audio.duration) return;
+
   const progressPercent = (audio.currentTime / audio.duration) * 100;
   progress.style.width = `${progressPercent}%`;
   currentTimeEl.textContent = formatTime(audio.currentTime);
