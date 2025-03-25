@@ -53,11 +53,9 @@ function playSong(index) {
   audio.src = `${songs[index].audio}?v=${new Date().getTime()}`; // Cache Bypass
 
   // Enhanced Error Logging
-  audio.onerror = function () {
-    console.error("Audio Error:", audio.error);
-    console.log("Network State:", audio.networkState);
-    console.log("Ready State:", audio.readyState);
-    alert(`Failed to load the audio file: ${songs[index].audio}`);
+  audio.onerror = function() {
+    console.error(`Audio error for ${songs[currentSongIndex].audio}`, audio.error);
+    alert(`Failed to load the audio file: ${songs[currentSongIndex].audio}`);
   };
 
   audio.play()
