@@ -1,87 +1,86 @@
 // Select elements
-const audio = document.getElementById('audio');
-const playBtn = document.getElementById('play');
-const prevBtn = document.getElementById('prev');
-const nextBtn = document.getElementById('next');
+const audioPlayer = document.getElementById('audio-player');
+const prevButton = document.getElementById('prev');
+const playButton = document.getElementById('play');
+const nextButton = document.getElementById('next');
 const songTitle = document.getElementById('song-title');
-const artistName = document.getElementById('artist-name');
-const progressContainer = document.getElementById('progress-container');
-const progress = document.getElementById('progress');
-const currentTimeEl = document.getElementById('current-time');
-const durationEl = document.getElementById('duration');
+const songArtist = document.getElementById('song-artist');
+const progressBar = document.getElementById('progress-bar');
+const currentTimeDisplay = document.getElementById('current-time');
+const durationDisplay = document.getElementById('duration');
 
-let songIndex = 0;
+// Song data
+const songs = [
+  { title: "Dil Mudia Na", artist: "Jazzy B", audio: "song1.mp3" },
+  { title: "Husn Walo Se", artist: "Nusrat Fateh Ali Khan", audio: "song2.mp3" },
+  { title: "Teri Yaadon Se", artist: "Mustafa Zahid", audio: "song3.mp3" }
+];
+
+let currentSongIndex = 0;
 
 // Load song
-function loadSong(song) {
+function loadSong(index) {
+  const song = songs[index];
+  audioPlayer.src = song.audio;
   songTitle.textContent = song.title;
-  artistName.textContent = song.artist;
-  audio.src = song.audio;
+  songArtist.textContent = song.artist;
 }
 
-// Play Song
-function playSong() {
-  audio.play();
-  playBtn.innerHTML = '❚❚';
-}
-
-// Pause Song
-function pauseSong() {
-  audio.pause();
-  playBtn.innerHTML = '▶';
-}
-
-// Toggle Play/Pause
-function togglePlay() {
-  const isPlaying = !audio.paused;
-  isPlaying ? pauseSong() : playSong();
-}
-
-// Previous Song
-function prevSong() {
-  songIndex = (songIndex - 1 + songs.length) % songs.length;
-  loadSong(songs[songIndex]);
-  playSong();
+// Play or Pause
+function togglePlayPause() {
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+    playButton.textContent = '❚❚';
+  } else {
+    audioPlayer.pause();
+    playButton.textContent = '▶';
+  }
 }
 
 // Next Song
 function nextSong() {
-  songIndex = (songIndex + 1) % songs.length;
-  loadSong(songs[songIndex]);
-  playSong();
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  loadSong(currentSongIndex);
+  audioPlayer.play();
+  playButton.textContent = '❚❚';
+}
+
+// Previous Song
+function prevSong() {
+  currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+  loadSong(currentSongIndex);
+  audioPlayer.play();
+  playButton.textContent = '❚❚';
 }
 
 // Update Progress Bar
-function updateProgress(e) {
-  const { duration, currentTime } = e.srcElement;
-  const progressPercent = (currentTime / duration) * 100;
-  progress.style.width = `${progressPercent}%`;
-  currentTimeEl.textContent = formatTime(currentTime);
-  durationEl.textContent = duration ? formatTime(duration) : '0:00';
+function updateProgress() {
+  const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+  progressBar.value = progressPercent;
+
+  // Update time display
+  const currentMinutes = Math.floor(audioPlayer.currentTime / 60);
+  const currentSeconds = Math.floor(audioPlayer.currentTime % 60);
+  const durationMinutes = Math.floor(audioPlayer.duration / 60);
+  const durationSeconds = Math.floor(audioPlayer.duration % 60);
+
+  currentTimeDisplay.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
+  durationDisplay.textContent = `${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds}`;
 }
 
-// Set Progress Bar
-function setProgress(e) {
-  const width = progressContainer.clientWidth;
-  const clickX = e.offsetX;
-  const duration = audio.duration;
-  audio.currentTime = (clickX / width) * duration;
-}
-
-// Format Time
-function formatTime(time) {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+// Seek function
+function setProgress() {
+  const seekTime = (progressBar.value / 100) * audioPlayer.duration;
+  audioPlayer.currentTime = seekTime;
 }
 
 // Event Listeners
-playBtn.addEventListener('click', togglePlay);
-prevBtn.addEventListener('click', prevSong);
-nextBtn.addEventListener('click', nextSong);
-audio.addEventListener('timeupdate', updateProgress);
-progressContainer.addEventListener('click', setProgress);
-audio.addEventListener('ended', nextSong);
+playButton.addEventListener('click', togglePlayPause);
+nextButton.addEventListener('click', nextSong);
+prevButton.addEventListener('click', prevSong);
+audioPlayer.addEventListener('timeupdate', updateProgress);
+progressBar.addEventListener('input', setProgress);
+audioPlayer.addEventListener('ended', nextSong);
 
-// Initial Load
-loadSong(songs[songIndex]);
+// Initial load
+loadSong(currentSongIndex);
