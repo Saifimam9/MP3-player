@@ -3,21 +3,22 @@ const songs = [
     title: "Dil Mudia Na", 
     artist: "Jazzy B", 
     image: "image.png", 
-    audio: "Dil-Mudia-Na.mp3"
+    audio: "Dil-Mudia-Na.mp3"  // Correct path for root directory
   },
   { 
     title: "Husn Walo Se", 
     artist: "Nusrat Fateh Ali Khan", 
     image: "image1.png", 
-    audio: "Husn-Walo-Se-320-Kbps.mp3"
+    audio: "Husn-Walo-Se-320-Kbps.mp3"  // Fixed filename
   },
   { 
     title: "Teri Yaadon Se", 
     artist: "Mustafa Zahid", 
     image: "image2.png", 
-    audio: "Teri-Yaadon-Se-128-Kbps.mp3"
+    audio: "Teri-Yaadon-Se-128-Kbps.mp3"  // Correct filename
   }
 ];
+
 
 let currentSongIndex = 0;
 const audio = document.getElementById('audio');
