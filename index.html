@@ -3,42 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
   <title>MP3 Player</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="player-container">
+  <div class="container">
     <h1>MP3 Player</h1>
-    <div class="song-list" id="songList"></div>
-    
+    <div class="playlist" id="playlist"></div>
+
+    <audio id="audio" controls></audio>
+
     <div class="controls">
-      <button id="prevBtn">⏮️</button>
-      <button id="playPauseBtn">▶️</button>
-      <button id="nextBtn">⏭️</button>
+      <button id="prev">⏮️</button>
+      <button id="playPause">▶️</button>
+      <button id="next">⏭️</button>
     </div>
 
     <div class="progress-container">
-      <div class="progress" id="progress"></div>
-    </div>
-    <div class="time-display">
-      <span id="currentTime">0:00</span>
+      <span id="current-time">0:00</span>
+      <input type="range" id="progress" value="0" />
       <span id="duration">0:00</span>
     </div>
   </div>
-  
-  <audio id="audio"></audio>
-  <audio id="audio" controls>
-  <source src="Dil-Mudia-Na.mp3" type="audio/mpeg">
-  <source src="Dil-Mudia-Na.ogg" type="audio/ogg">
-  <source src="Husn-Walo-Se-320-Kbps.mp3" type="audio/mpeg">
-  <source src="Husn-Walo-Se-320-Kbps.ogg" type="audio/ogg">
-  <source src="Teri-Yaadon-Se-128-Kbps.mp3" type="audio/mpeg">
-  <source src="Teri-Yaadon-Se-128-Kbps.ogg" type="audio/ogg">
-  Your browser does not support the audio tag.
-</audio>
 
   <script src="script.js"></script>
 </body>
