@@ -1,8 +1,9 @@
 const songs = [
-  { title: "Song 1", artist: "Unknown", audio: "song(1).mp3" },
-  { title: "Song 2", artist: "Unknown", audio: "song(2).mp3" },
-  { title: "Song 3", artist: "Unknown", audio: "song(3).mp3" }
+  { title: "Dil Mudia Na", artist: "Jazzy B", audio: "song1.mp3" },
+  { title: "Husn Walo Se", artist: "Nusrat Fateh Ali Khan", audio: "song2.mp3" },
+  { title: "Teri Yaadon Se", artist: "Mustafa Zahid", audio: "song3.mp3" }
 ];
+
 
 
 let currentSongIndex = 0;
