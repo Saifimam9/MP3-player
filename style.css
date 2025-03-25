@@ -1,30 +1,60 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
   background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-}
-
-.container {
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: #fff;
 }
 
-.player {
-  background: rgba(255, 255, 255, 0.9);
+.container {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
   border-radius: 20px;
-  padding: 30px;
   width: 400px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
-  font-size: 2em;
+  font-size: 2rem;
   margin-bottom: 20px;
+}
+
+.audio-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button img {
+  width: 24px;
+  height: 24px;
+}
+
+.audio-bar {
+  width: 100%;
+  margin-top: 20px;
 }
 
 .song-list {
@@ -32,57 +62,28 @@ h1 {
 }
 
 .song {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
-  background-color: #f0f0f0;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.song:hover {
-  background-color: #e0e0e0;
-}
-
-.song.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.controls {
+  padding: 10px;
+  margin: 10px 0;
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  align-items: center;
 }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 15px;
-  border-radius: 50%;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background 0.3s;
+.song img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }
 
-button:hover {
-  background-color: #45a049;
+.song-details {
+  text-align: left;
 }
 
-audio {
-  width: 100%;
-  margin-top: 20px;
+.song-title {
+  font-weight: bold;
 }
 
-.time {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-progress {
-  width: 100%;
+.song-artist {
+  font-size: 0.9rem;
 }
