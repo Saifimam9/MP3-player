@@ -2,88 +2,71 @@ body {
   font-family: Arial, sans-serif;
   background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: #fff;
+  margin: 0;
 }
 
 .container {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30px;
   border-radius: 20px;
-  width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
+  max-width: 400px;
+  width: 100%;
 }
 
 h1 {
-  font-size: 2rem;
   margin-bottom: 20px;
 }
 
-.audio-controls {
+.song-list div {
+  background: rgba(240, 240, 240, 0.8);
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.song-list img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.controls {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-top: 20px;
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #007bff;
   border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  color: white;
+  font-size: 18px;
+  padding: 15px;
   margin: 0 10px;
+  border-radius: 50%;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
 
-button img {
-  width: 24px;
-  height: 24px;
-}
-
-.audio-bar {
+audio {
   width: 100%;
   margin-top: 20px;
 }
 
-.song-list {
-  margin-bottom: 20px;
-}
-
-.song {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-}
-
-.song img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
-
-.song-details {
-  text-align: left;
-}
-
-.song-title {
-  font-weight: bold;
-}
-
-.song-artist {
-  font-size: 0.9rem;
+#progress-bar {
+  width: 100%;
+  margin-top: 10px;
 }
