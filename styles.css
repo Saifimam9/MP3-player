@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background: url('background.jpg') no-repeat center center fixed;
+  background: url('image.png') no-repeat center center fixed;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -10,7 +10,8 @@ body {
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -23,29 +24,12 @@ h1 {
   margin-bottom: 20px;
 }
 
-.song-list div {
-  background: rgba(240, 240, 240, 0.8);
+h3, h4 {
   margin: 10px 0;
-  padding: 15px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
+  color: #007bff;
 }
 
-.song-list img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 15px;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-button {
+.controls button {
   background-color: #007bff;
   border: none;
   color: white;
