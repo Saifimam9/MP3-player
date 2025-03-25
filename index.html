@@ -3,26 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
   <title>MP3 Player</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>MP3 Player</h1>
-    <div class="playlist" id="playlist"></div>
-
+    <ul id="song-list"></ul>
     <audio id="audio" controls></audio>
-
     <div class="controls">
-      <button id="prev">⏮️</button>
-      <button id="playPause">▶️</button>
-      <button id="next">⏭️</button>
-    </div>
-
-    <div class="progress-container">
-      <span id="current-time">0:00</span>
-      <input type="range" id="progress" value="0" />
-      <span id="duration">0:00</span>
+      <button id="prevButton">⏮️</button>
+      <button id="playButton">▶️</button>
+      <button id="nextButton">⏭️</button>
     </div>
   </div>
 
