@@ -1,21 +1,21 @@
 const songs = [
-  { 
-    title: "Dil Mudia Na", 
-    artist: "Jazzy B", 
-    image: "image.png", 
-    audio: "Dil-Mudia-Na.mp3"  // Correct path for root directory
+  {
+    title: "Dil Mudia Na",
+    artist: "Jazzy B",
+    image: "image.png",
+    audio: "song(1).mp3"
   },
-  { 
-    title: "Husn Walo Se", 
-    artist: "Nusrat Fateh Ali Khan", 
-    image: "image1.png", 
-    audio: "Husn-Walo-Se-320-Kbps.mp3"  // Fixed filename
+  {
+    title: "Husn Walo Se",
+    artist: "Nusrat Fateh Ali Khan",
+    image: "image1.png",
+    audio: "song(2).mp3"
   },
-  { 
-    title: "Teri Yaadon Se", 
-    artist: "Mustafa Zahid", 
-    image: "image2.png", 
-    audio: "Teri-Yaadon-Se-128-Kbps.mp3"  // Correct filename
+  {
+    title: "Teri Yaadon Se",
+    artist: "Mustafa Zahid",
+    image: "image2.png",
+    audio: "song(3).mp3"
   }
 ];
 
